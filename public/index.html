@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ReloSmart | Professional City Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function ReloSmartApp() {
+            const [query, setQuery] = React.useState("");
+            const [query2, setQuery2] = React.useState("");
+            const [cityData, setCityData] = React.useState(null);
+            const [cityData2, setCityData2] = React.useState(null);
+            const [loading, setLoading] = React.useState(false);
+            const [error, setError] = React.useState("");
+            const [income, setIncome] = React.useState(5000);
+            const [lifestyle, setLifestyle] = React.useState('Standard');
+            const [compareMode, setCompareMode] = React.useState(false);
+            const [rankings, setRankings] = React.useState(null);
+
+            React.useEffect(() => {
+                fetch('http://localhost:3000/rankings')
+                    .then(res => res.json())
+                    .then(data => setRankings(data))
+                    .catch(err => console.error("Failed to load rankings", err));
+            }, []);
+
+            const lifestyleMultipliers = { Minimalist: 0.75, Standard: 1, Premium: 1.9 };
+
+            const fetchCity = async (cityName) => {
+                const res = await fetch(`http://localhost:3000/city/${cityName}`);
+                if (!res.ok) throw new Error("City not found");
+                const data = await res.json();
+                return parseCityData(data);
+            };
+
+            const analyzeRelocation = async () => {
+                if (!query) return;
+                if (compareMode && !query2) return;
+
+                setLoading(true);
+                setError("");
+                setCityData(null);
+                setCityData2(null);
+
+                try {
+                    const data1 = await fetchCity(query);
+                    setCityData(data1);
+
+                    if (compareMode) {
+                        const data2 = await fetchCity(query2);
+                        setCityData2(data2);
+                    }
+                } catch (err) {
+                    setError("Could not find one of the cities. Try 'London', 'Berlin', or 'Tokyo'.");
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const parseCityData = (data) => {
+                // Fuzzy matcher
+                const getPrice = (keywords) => {
+                    const item = data.costs.find(c => {
+                        const name = c.item.toLowerCase();
+                        return keywords.every(k => name.includes(k.toLowerCase()));
+                    });
+                    return item ? (parseFloat(item.cost.replace(/[^0-9.]/g, '')) || 0) : 0;
+                };
+
+                // 1. Rent (Updated Selectors)
+                const rent = getPrice(['1 Bedroom', 'City Centre']) || getPrice(['Apartment', '1 bedroom', 'Centre']);
+                const rentOutside = getPrice(['1 Bedroom', 'Outside']) || getPrice(['Apartment', '1 bedroom', 'Outside']);
+
+                // 2. Utilities
+                const basicUtils = getPrice(['Basic', 'Electricity']);
+                const internet = getPrice(['Internet']);
+                const utilities = basicUtils + internet;
+
+                // 3. Transport
+                const transport = getPrice(['Monthly Pass']);
+                const gas = getPrice(['Gasoline']);
+
+                // 4. Food (Grocery Basket)
+                const milk = getPrice(['Milk']) * 4;
+                const bread = getPrice(['Bread']) * 2;
+                const rice = getPrice(['Rice']) * 1;
+                const eggs = getPrice(['Eggs']) * 1;
+                const cheese = getPrice(['Cheese']) * 0.5;
+                const chicken = getPrice(['Chicken']) * 2;
+                const beef = getPrice(['Beef']) * 0.5;
+                const fruits = (getPrice(['Apples']) + getPrice(['Banana']) + getPrice(['Oranges'])) * 1;
+                const veg = (getPrice(['Tomato']) + getPrice(['Potato']) + getPrice(['Onion'])) * 1;
+                const meal = getPrice(['Meal', 'Inexpensive']);
+                const dining = meal * 4;
+
+                const food = milk + bread + rice + eggs + cheese + chicken + beef + fruits + veg + dining;
+
+                return {
+                    name: data.city,
+                    rent,
+                    rentOutside,
+                    food,
+                    transport,
+                    utilities,
+                    gas,
+                    meal
+                };
+            };
+
+            // Calculation Logic
+            // Calculation Helper
+            const calculateStats = (data) => {
+                if (!data) return null;
+                const multiplier = lifestyleMultipliers[lifestyle];
+                const baseRent = (lifestyle === 'Minimalist' && data.rentOutside) ? data.rentOutside : (data.rent || 0);
+                const adjRent = baseRent * (lifestyle === 'Premium' ? 1.5 : 1);
+                const adjFood = data.food * multiplier;
+                const adjTransport = lifestyle === 'Premium' ? (data.transport * 4 + 300) : data.transport;
+                const totalExp = adjRent + adjFood + adjTransport + (data.utilities || 0);
+                const savings = income - totalExp;
+                const rentRatio = income > 0 ? (adjRent / income) * 100 : 0;
+
+                // Risk Score
+                let score = 100;
+                if (rentRatio > 30) score -= (rentRatio - 30) * 2;
+                if ((adjFood / income) * 100 > 15) score -= ((adjFood / income) * 100 - 15) * 2;
+                if (savings < 0) score -= 50;
+                else if ((savings / income) < 0.2) score -= 20;
+                const riskScore = Math.max(0, Math.min(100, Math.round(score)));
+
+                return { adjRent, adjFood, adjTransport, totalExp, savings, rentRatio, riskScore, annualSavings: savings * 12 };
+            };
+
+            const stats1 = calculateStats(cityData);
+            const stats2 = calculateStats(cityData2);
+
+            // Projections (derived from stats1)
+            const annualSavings = stats1?.annualSavings || 0;
+            const fiveYearSavings = annualSavings * 5;
+
+            return (
+                <div className="max-w-7xl mx-auto p-4 md:p-10 font-sans">
+                    <header className="mb-8 text-center flex flex-col items-center">
+                        <h1 className="text-4xl md:text-5xl font-black text-blue-900 tracking-tighter">ReloSmart<span className="text-blue-500">.ai</span></h1>
+                        <p className="text-slate-500 font-bold uppercase text-xs tracking-[0.2em] mt-2 mb-6">Relocation Intelligence System</p>
+
+                        <div className="bg-slate-100 p-1 rounded-full flex gap-1">
+                            <button
+                                onClick={() => setCompareMode(false)}
+                                className={`px-6 py-2 rounded-full text-xs font-bold transition-all ${!compareMode ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-400'}`}
+                            >
+                                Single City
+                            </button>
+                            <button
+                                onClick={() => setCompareMode(true)}
+                                className={`px-6 py-2 rounded-full text-xs font-bold transition-all ${compareMode ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-400'}`}
+                            >
+                                Compare Cities
+                            </button>
+                        </div>
+                    </header>
+
+                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+
+                        {/* LEFT COLUMN: Controls */}
+                        <div className="xl:col-span-4 space-y-6">
+                            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100 relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+                                <h3 className="text-lg font-black text-slate-800 mb-6 uppercase tracking-wide">Configuration</h3>
+
+                                <div className="space-y-6">
+                                    <div>
+                                        <label className="block text-xs font-bold text-slate-400 mb-2 uppercase">Target City {compareMode ? 'A' : ''}</label>
+                                        <input
+                                            type="text" placeholder="e.g. London"
+                                            className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-4 focus:ring-blue-100 font-bold"
+                                            onChange={(e) => setQuery(e.target.value)}
+                                        />
+                                    </div>
+
+                                    {compareMode && (
+                                        <div className="animate-in fade-in slide-in-from-top-4 duration-500">
+                                            <label className="block text-xs font-bold text-slate-400 mb-2 uppercase">Comparison City B</label>
+                                            <input
+                                                type="text" placeholder="e.g. New York"
+                                                className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-4 focus:ring-purple-100 font-bold"
+                                                onChange={(e) => setQuery2(e.target.value)}
+                                            />
+                                        </div>
+                                    )}
+
+                                    <button
+                                        onClick={analyzeRelocation}
+                                        className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-200"
+                                    >
+                                        {loading ? 'Analyzing...' : `Analyze ${compareMode ? 'Comparison' : 'Relocation'}`}
+                                    </button>
+
+                                    {error && <p className="text-xs text-red-500 font-bold">{error}</p>}
+
+                                    <div className="pt-4 border-t border-slate-100">
+                                        <label className="block text-xs font-bold text-slate-400 mb-2 uppercase">Monthly Income</label>
+                                        <div className="relative">
+                                            <span className="absolute left-4 top-4 text-slate-400 font-bold">$</span>
+                                            <input
+                                                type="number" value={income}
+                                                onChange={(e) => setIncome(e.target.value)}
+                                                className="w-full p-4 pl-10 bg-slate-50 rounded-2xl text-xl font-black outline-none"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-xs font-bold text-slate-400 mb-4 uppercase">Lifestyle Mode</label>
+                                        <div className="flex bg-slate-100 p-1 rounded-2xl">
+                                            {['Minimalist', 'Standard', 'Premium'].map(m => (
+                                                <button
+                                                    key={m}
+                                                    onClick={() => setLifestyle(m)}
+                                                    className={`flex-1 py-3 rounded-xl font-bold text-xs transition-all ${lifestyle === m ? 'bg-white text-blue-600 shadow-md' : 'text-slate-400'}`}
+                                                >
+                                                    {m}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* RIGHT COLUMN: Results */}
+                        <div className="xl:col-span-8 space-y-8">
+                            {!cityData ? (
+                                <div className="h-full min-h-[400px] border-4 border-dashed border-slate-200 rounded-[3rem] flex flex-col items-center justify-center text-slate-300 p-10 text-center">
+                                    <span className="text-8xl mb-6 opacity-20">⚖️</span>
+                                    <p className="text-2xl font-black text-slate-300">Analysis Dashboard</p>
+                                    <p className="font-medium opacity-50 mt-2">Activate {compareMode ? 'Comparison Mode' : 'Relocation Mode'}</p>
+                                </div>
+                            ) : (
+                                <div className="space-y-6">
+
+                                    {/* COMPARISON VERDICT HEADER */}
+                                    {compareMode && stats1 && stats2 && (
+                                        <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                                            <div className="absolute right-0 top-0 w-64 h-64 bg-gradient-to-l from-purple-600 to-transparent opacity-30 blur-3xl"></div>
+                                            <h2 className="text-2xl font-black italic mb-2">🏆 THE VERDICT</h2>
+                                            <p className="text-lg opacity-90">
+                                                Moving to <span className="font-bold text-emerald-300">{stats1.savings > stats2.savings ? cityData.name : cityData2.name}</span> could result in
+                                                <span className="font-bold text-emerald-300"> ${Math.abs(stats1.annualSavings - stats2.annualSavings).toLocaleString()} </span>
+                                                more savings per year.
+                                            </p>
+                                        </div>
+                                    )}
+
+                                    {/* RESULTS GRID */}
+                                    <div className={`grid ${compareMode ? 'grid-cols-2' : 'grid-cols-1'} gap-6`}>
+
+                                        {/* CITY 1 CARD */}
+                                        <div className="bg-white p-6 rounded-[2.5rem] shadow-lg border border-slate-100">
+                                            <h3 className="text-2xl font-black text-slate-800 mb-1">{cityData.name}</h3>
+                                            <div className="flex gap-2 mb-6">
+                                                <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase ${stats1.riskScore > 70 ? 'bg-emerald-100 text-emerald-700' : stats1.riskScore > 40 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
+                                                    Risk: {stats1.riskScore}/100
+                                                </span>
+                                            </div>
+
+                                            <div className="space-y-4">
+                                                <div className="flex justify-between items-end pb-2 border-b border-slate-100">
+                                                    <span className="text-xs font-bold text-slate-400 uppercase">Monthly Surplus</span>
+                                                    <span className={`text-2xl font-black ${stats1.savings >= 0 ? 'text-emerald-500' : 'text-red-500'}`}>
+                                                        ${Math.round(stats1.savings).toLocaleString()}
+                                                    </span>
+                                                </div>
+                                                <div className="grid grid-cols-2 gap-4">
+                                                    <div><p className="text-[10px] text-slate-400 font-bold uppercase">Rent</p><p className="font-bold text-slate-700">${Math.round(stats1.adjRent)}</p></div>
+                                                    <div><p className="text-[10px] text-slate-400 font-bold uppercase">Food</p><p className="font-bold text-slate-700">${Math.round(stats1.adjFood)}</p></div>
+                                                    <div><p className="text-[10px] text-slate-400 font-bold uppercase">Transport</p><p className="font-bold text-slate-700">${Math.round(stats1.adjTransport)}</p></div>
+                                                    <div><p className="text-[10px] text-slate-400 font-bold uppercase">Utilities</p><p className="font-bold text-slate-700">${Math.round(cityData.utilities)}</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* CITY 2 CARD (Conditional) */}
+                                        {compareMode && stats2 && (
+                                            <div className="bg-slate-50 p-6 rounded-[2.5rem] border border-slate-200">
+                                                <h3 className="text-2xl font-black text-slate-600 mb-1">{cityData2.name}</h3>
+                                                <div className="flex gap-2 mb-6">
+                                                    <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase ${stats2.riskScore > 70 ? 'bg-emerald-100 text-emerald-700' : stats2.riskScore > 40 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
+                                                        Risk: {stats2.riskScore}/100
+                                                    </span>
+                                                </div>
+
+                                                <div className="space-y-4">
+                                                    <div className="flex justify-between items-end pb-2 border-b border-slate-200">
+                                                        <span className="text-xs font-bold text-slate-400 uppercase">Monthly Surplus</span>
+                                                        <span className={`text-2xl font-black ${stats2.savings >= 0 ? 'text-emerald-500' : 'text-red-500'}`}>
+                                                            ${Math.round(stats2.savings).toLocaleString()}
+                                                        </span>
+                                                    </div>
+                                                    <div className="grid grid-cols-2 gap-4">
+                                                        <div><p className="text-[10px] text-slate-400 font-bold uppercase">Rent</p><p className="font-bold text-slate-500">${Math.round(stats2.adjRent)}</p></div>
+                                                        <div><p className="text-[10px] text-slate-400 font-bold uppercase">Food</p><p className="font-bold text-slate-500">${Math.round(stats2.adjFood)}</p></div>
+                                                        <div><p className="text-[10px] text-slate-400 font-bold uppercase">Transport</p><p className="font-bold text-slate-500">${Math.round(stats2.adjTransport)}</p></div>
+                                                        <div><p className="text-[10px] text-slate-400 font-bold uppercase">Utilities</p><p className="font-bold text-slate-500">${Math.round(cityData2.utilities)}</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                </div>
+                            )}
+
+                            {/* GLOBAL RANKINGS CHART */}
+                            {rankings && (
+                                <div className="bg-white p-8 rounded-[2.5rem] shadow-lg border border-slate-100">
+                                    <h3 className="text-xl font-black text-slate-800 mb-6 uppercase tracking-wide">
+                                        Global Cost Estimates (Base: NYC $4,000)
+                                    </h3>
+                                    <div className="space-y-4">
+                                        {rankings.expensive.map((city, i) => {
+                                            const estimatedCost = (city.col_plus_rent_index / 100) * 4000;
+                                            return (
+                                                <div key={i} className="flex items-center gap-4">
+                                                    <div className="w-48 text-xs font-bold text-slate-500 truncate">{city.city}</div>
+                                                    <div className="flex-1 h-3 bg-slate-100 rounded-full overflow-hidden">
+                                                        <div
+                                                            className="h-full bg-blue-500 rounded-full"
+                                                            style={{ width: `${(city.col_plus_rent_index / 130) * 100}%` }}
+                                                        ></div>
+                                                    </div>
+                                                    <div className="w-24 text-right">
+                                                        <span className="block text-xs font-black text-slate-800">
+                                                            ${Math.round(estimatedCost).toLocaleString()}
+                                                        </span>
+                                                        <span className="block text-[8px] font-bold text-slate-400">
+                                                            Idx: {city.col_plus_rent_index}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+                            {/* OPTIMIZATION STRATEGIES */}
+                            {cityData && (
+                                <div className="space-y-6">
+                                    <h3 className="text-xl font-black text-slate-800 uppercase tracking-wide">💡 Smart Budget Optimization</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                        {/* Housing Strategy */}
+                                        <div className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl text-2xl">🏠</div>
+                                                <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase">
+                                                    Save ${Math.round(cityData.rent - cityData.rentOutside)}/mo
+                                                </span>
+                                            </div>
+                                            <h4 className="font-bold text-slate-700 mb-2">Move 15-min Out</h4>
+                                            <p className="text-xs text-slate-400 leading-relaxed">
+                                                Rent drops significantly just outside the city center.
+                                                <br /><br />
+                                                <span className="font-bold text-slate-600">Centre:</span> ${Math.round(cityData.rent)}
+                                                <br />
+                                                <span className="font-bold text-slate-600">Outside:</span> ${Math.round(cityData.rentOutside)}
+                                            </p>
+                                        </div>
+
+                                        {/* Transport Strategy */}
+                                        <div className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div className="p-3 bg-purple-50 text-purple-600 rounded-2xl text-2xl">🚌</div>
+                                                <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase">
+                                                    Save ${Math.round((cityData.gas * 40 + 500) - cityData.transport)}/mo
+                                                </span>
+                                            </div>
+                                            <h4 className="font-bold text-slate-700 mb-2">Public Transit</h4>
+                                            <p className="text-xs text-slate-400 leading-relaxed">
+                                                Switching from car ownership (Est. $500 + Gas) to a monthly pass.
+                                                <br /><br />
+                                                <span className="font-bold text-slate-600">Car:</span> ${Math.round(cityData.gas * 40 + 500)}
+                                                <br />
+                                                <span className="font-bold text-slate-600">Pass:</span> ${Math.round(cityData.transport)}
+                                            </p>
+                                        </div>
+
+                                        {/* Food Strategy */}
+                                        <div className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div className="p-3 bg-orange-50 text-orange-600 rounded-2xl text-2xl">🍳</div>
+                                                <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase">
+                                                    Save ${Math.round((cityData.meal * 12) - (cityData.food * 0.3))}/mo
+                                                </span>
+                                            </div>
+                                            <h4 className="font-bold text-slate-700 mb-2">Chef Mode</h4>
+                                            <p className="text-xs text-slate-400 leading-relaxed">
+                                                Replacing 3 restaurant meals/week with home cooking.
+                                                <br /><br />
+                                                <span className="font-bold text-slate-600">Dining Out:</span> ${Math.round(cityData.meal * 12)}
+                                                <br />
+                                                <span className="font-bold text-slate-600">Groceries:</span> ${Math.round(cityData.food * 0.3)}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ReloSmartApp />);
+    </script>
+</body>
+
+</html>

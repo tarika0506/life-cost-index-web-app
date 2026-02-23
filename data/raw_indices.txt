@@ -1,0 +1,266 @@
+Rank	City	Cost of Living Index	Rent Index	Cost of Living Plus Rent Index	Groceries Index	Restaurant Price Index	Local Purchasing Power Index
+1	Zurich, Switzerland	125.7	74.8	102.5	128.1	125.4	163.8
+2	Geneva, Switzerland	121.3	66.9	96.5	119.5	127.5	160.1
+3	Basel, Switzerland	116.6	49.6	86.1	117.5	114.9	183.2
+4	Lugano, Switzerland	116.4	46.6	84.7	113.6	133.7	150.9
+5	Lausanne, Switzerland	116.1	55.6	88.6	115.6	117.7	176.7
+6	George Town, Cayman Islands	112.2	77.7	96.5	120.0	102.9	155.7
+7	Bern, Switzerland	111.9	48.2	82.9	113.5	111.2	177.1
+8	Reykjavik, Iceland	102.5	50.4	78.8	111.9	110.2	111.4
+9	Honolulu, HI, United States	100.0	62.2	82.8	119.2	101.8	96.7
+10	New York, NY, United States	100.0	100.0	100.0	100.0	100.0	100.0
+11	San Francisco, CA, United States	97.3	78.7	88.8	106.5	102.2	159.5
+12	Oslo, Norway	96.5	40.8	71.1	97.4	105.9	117.2
+13	Tel Aviv-Yafo, Israel	96.3	47.1	73.9	86.9	103.0	110.4
+14	Trondheim, Norway	92.9	30.9	64.7	98.7	96.9	126.8
+15	Bergen, Norway	91.9	29.9	63.7	92.9	104.1	128.2
+16	London, United Kingdom	91.2	70.9	82.0	73.4	91.1	115.8
+17	San Jose, CA, United States	90.4	72.2	82.1	94.2	88.1	133.1
+18	Seattle, WA, United States	90.4	60.6	76.8	98.7	91.1	165.4
+19	Washington, DC, United States	90.1	69.3	80.6	93.5	92.9	146.6
+20	Singapore, Singapore	90.1	67.7	79.9	81.4	55.5	105.5
+21	Stavanger, Norway	89.5	38.7	66.3	94.3	95.6	138.2
+22	Charleston, SC, United States	88.7	51.3	71.6	104.1	97.7	122.7
+23	Ramat Gan, Israel	88.4	34.1	63.7	87.5	93.8	126.4
+24	Berkeley, CA, United States	87.9	62.5	76.3	107.7	77.0	167.3
+25	Copenhagen, Denmark	87.0	45.9	68.3	80.8	100.3	141.0
+26	Jerusalem, Israel	86.6	40.3	65.6	79.0	93.2	112.3
+27	Boston, MA, United States	86.0	76.5	81.7	90.7	90.5	156.7
+28	Amsterdam, Netherlands	84.5	56.9	71.9	77.8	88.9	141.6
+29	Stockholm, Sweden	83.7	37.1	62.5	80.1	83.9	120.4
+30	Oakland, CA, United States	83.6	57.1	71.5	96.0	91.0	141.5
+31	Miami, FL, United States	83.5	67.8	76.4	90.8	97.7	105.0
+32	Anchorage, AK, United States	83.3	36.4	62.0	90.2	89.3	143.6
+33	Los Angeles, CA, United States	83.3	68.2	76.4	88.9	89.2	106.9
+34	Haifa, Israel	83.3	23.8	56.2	81.5	94.4	132.8
+35	San Diego, CA, United States	83.0	72.9	78.4	83.2	89.4	135.7
+36	Pisa, Italy	82.7	26.7	57.2	96.6	75.6	56.5
+37	Luxembourg, Luxembourg	82.5	54.3	69.6	81.8	91.0	148.1
+38	Haarlem, Netherlands	82.0	43.1	64.3	74.8	94.3	116.7
+39	Aalborg, Denmark	81.9	22.2	54.7	82.2	93.4	164.8
+40	Aarhus, Denmark	81.7	32.2	59.2	75.3	97.1	146.6
+41	Arlington, VA, United States	81.1	62.0	72.4	92.0	82.3	171.8
+42	Paris, France	80.8	41.9	63.1	82.2	76.0	123.3
+43	Sydney, Australia	80.7	56.2	69.5	86.8	75.5	115.1
+44	Philadelphia, PA, United States	80.3	43.4	63.5	86.6	81.7	131.8
+45	Irvine, CA, United States	79.8	67.6	74.3	86.4	84.7	150.0
+46	Sacramento, CA, United States	79.8	46.5	64.6	87.7	74.6	136.7
+47	Petah Tikva, Israel	79.7	29.3	56.8	75.5	94.4	128.8
+48	Beersheba, Israel	79.7	16.3	50.8	78.7	89.0	127.1
+49	Utrecht, Netherlands	79.0	43.1	62.6	71.4	79.1	145.5
+50	Salzburg, Austria	78.7	34.4	58.5	82.1	76.4	108.3
+51	Munich, Germany	78.3	44.0	62.7	67.2	81.3	149.2
+52	Jersey City, NJ, United States	78.2	70.7	74.8	83.6	82.4	148.5
+53	Portland, OR, United States	78.1	47.9	64.4	88.7	77.0	147.0
+54	Espoo, Finland	78.0	29.9	56.1	78.7	86.1	119.1
+55	Guildford, United Kingdom	78.0	42.5	61.8	73.8	81.4	117.6
+56	Oxford, United Kingdom	77.8	47.6	64.1	69.6	90.9	118.3
+57	Odense, Denmark	77.7	22.5	52.6	74.6	104.1	166.4
+58	Dublin, Ireland	77.6	59.9	69.5	73.8	87.1	120.0
+59	New Orleans, LA, United States	77.6	38.6	59.8	79.7	96.1	126.4
+60	Canberra, Australia	77.5	40.1	60.5	86.7	69.6	131.5
+61	Vienna, Austria	77.1	29.1	55.2	76.6	81.7	136.2
+62	Milan, Italy	77.0	41.7	60.9	76.3	79.2	73.5
+63	Chicago, IL, United States	76.9	56.4	67.6	84.8	82.0	144.7
+64	Delft, Netherlands	76.8	39.4	59.8	73.4	88.1	121.8
+65	Brighton, United Kingdom	76.8	42.0	61.0	71.4	81.9	113.2
+66	Rotterdam, Netherlands	76.7	41.9	60.9	70.5	83.1	131.0
+67	Nice, France	76.6	29.3	55.1	84.5	77.5	96.6
+68	Melbourne, Australia	76.6	42.1	60.9	88.5	70.5	137.3
+69	Frankfurt, Germany	76.6	33.2	56.8	68.9	79.5	165.8
+70	Albany, NY, United States	76.5	39.2	59.5	84.9	86.8	128.9
+71	Fort Lauderdale, FL, United States	76.5	58.1	68.1	81.7	88.1	126.5
+72	The Hague (Den Haag), Netherlands	76.2	43.5	61.3	70.0	83.0	147.2
+73	Helsinki, Finland	76.0	29.3	54.7	73.4	83.2	114.7
+74	Denver, CO, United States	75.9	47.3	62.9	84.8	72.0	138.7
+75	Marseille, France	75.8	21.6	51.2	92.7	72.4	103.6
+76	Strasbourg, France	75.8	22.6	51.6	90.6	69.9	115.7
+77	Atlanta, GA, United States	75.8	43.1	60.9	85.0	83.7	165.2
+78	Wiesbaden, Germany	75.5	23.8	52.0	68.4	78.4	132.3
+79	Hong Kong, Hong Kong (China)	75.4	58.2	67.5	77.1	49.6	92.9
+80	Cambridge, United Kingdom	75.3	46.7	62.3	69.5	79.0	132.2
+81	Lyon, France	75.2	22.7	51.3	84.7	67.4	124.0
+82	Reno, NV, United States	75.0	36.6	57.5	81.6	82.7	142.4
+83	Heidelberg, Germany	75.0	33.6	56.2	71.2	69.0	108.8
+84	Colorado Springs, CO, United States	75.0	39.5	58.8	81.7	76.4	137.5
+85	Dusseldorf, Germany	74.8	31.5	55.0	68.9	72.7	145.4
+86	Dallas, TX, United States	74.6	45.7	61.5	78.2	74.4	142.9
+87	Edinburgh, United Kingdom	74.4	37.8	57.7	67.5	85.7	125.0
+88	Galway, Ireland	74.1	51.0	63.6	75.1	80.9	95.4
+89	Buffalo, NY, United States	74.1	31.8	54.8	77.0	79.6	123.9
+90	Gent, Belgium	74.0	26.9	52.6	72.0	91.0	124.8
+91	Minneapolis, MN, United States	74.0	38.2	57.7	86.2	77.0	150.1
+92	Gold Coast, Australia	74.0	43.0	59.9	85.7	77.0	127.5
+93	Brussels, Belgium	74.0	32.9	55.3	74.6	86.0	133.2
+94	Essen, Germany	74.0	17.8	48.4	69.8	75.5	141.9
+95	Saint Louis, MO, United States	73.8	28.4	53.1	91.2	69.9	154.7
+96	Darmstadt, Germany	73.8	28.0	52.9	70.7	72.7	138.3
+97	Cologne, Germany	73.7	28.2	53.0	69.5	73.4	134.2
+98	Greenville, SC, United States	73.6	39.4	58.0	86.3	79.1	142.7
+99	Baltimore, MD, United States	73.6	35.1	56.0	81.6	73.6	141.4
+100	Phoenix, AZ, United States	73.5	39.1	57.9	78.5	79.0	138.8
+101	Cork, Ireland	73.5	45.3	60.7	76.7	78.4	122.3
+102	Antwerp, Belgium	73.4	23.7	50.8	70.7	90.4	116.3
+103	Leiden, Netherlands	73.3	35.6	56.1	69.6	75.6	159.7
+104	Reading, United Kingdom	73.1	40.1	58.1	65.2	85.4	120.9
+105	Uppsala, Sweden	73.0	23.8	50.6	77.1	75.9	120.3
+106	Perth, Australia	72.9	39.7	57.8	82.8	70.2	140.9
+107	Hamburg, Germany	72.9	32.3	54.4	66.9	71.9	145.3
+108	Eindhoven, Netherlands	72.7	36.3	56.2	68.1	78.9	143.4
+109	Graz, Austria	72.7	20.1	48.8	75.3	74.1	128.9
+110	Adelaide, Australia	72.7	35.2	55.6	83.0	73.2	131.5
+111	Stuttgart, Germany	72.7	29.4	53.0	68.2	74.4	167.3
+112	Bristol, United Kingdom	72.7	42.5	58.9	66.8	81.1	114.9
+113	Dortmund, Germany	72.6	19.9	48.6	69.9	68.8	147.8
+114	Augsburg, Germany	72.6	25.2	51.0	69.4	72.9	135.6
+115	Malmo, Sweden	72.4	26.6	51.6	75.9	74.9	129.0
+116	Spokane, WA, United States	72.2	38.2	56.7	83.0	71.6	142.0
+117	Southampton, United Kingdom	72.2	34.3	54.9	66.3	84.1	120.2
+118	Oklahoma City, OK, United States	72.2	27.6	51.9	77.1	76.1	137.8
+119	Berlin, Germany	72.0	36.6	55.9	66.2	69.1	130.2
+120	Mainz, Germany	71.8	22.9	49.6	66.4	69.3	129.2
+121	Fort Worth, TX, United States	71.7	36.6	55.7	77.4	71.6	145.5
+122	Nuremberg, Germany	71.7	23.4	49.7	67.0	73.9	147.0
+123	Bremen, Germany	71.6	21.8	49.0	70.2	71.1	142.8
+124	Kiel, Germany	71.6	19.9	48.0	71.7	71.0	142.6
+125	Richmond, VA, United States	71.5	35.4	55.1	72.4	83.6	148.6
+126	Groningen, Netherlands	71.4	27.2	51.3	71.1	77.9	128.7
+127	Orlando, FL, United States	71.3	42.9	58.4	82.1	73.6	142.7
+128	Bonn, Germany	71.2	26.9	51.0	71.5	65.7	144.5
+129	Birmingham, United Kingdom	71.2	31.0	52.9	66.4	76.1	136.5
+130	San Juan, Puerto Rico	71.1	32.4	53.5	78.4	66.9	95.3
+131	Florence, Italy	71.1	30.0	52.4	76.2	77.6	80.1
+132	Turku, Finland	71.0	20.2	47.9	70.8	80.5	120.0
+133	Karlsruhe, Germany	71.0	24.9	50.0	70.8	69.4	124.2
+134	Toulouse, France	71.0	20.8	48.1	79.4	69.6	120.0
+135	Dresden, Germany	70.9	19.1	47.3	68.7	71.2	138.5
+136	Linz, Austria	70.8	22.9	49.0	75.1	72.6	121.3
+137	Brescia, Italy	70.7	23.0	49.0	73.9	77.6	82.1
+138	Limerick, Ireland	70.7	41.5	57.4	77.5	73.6	116.6
+139	Charlotte, NC, United States	70.7	43.5	58.3	81.5	67.4	141.5
+140	York, United Kingdom	70.6	32.3	53.2	65.7	87.1	125.6
+141	Bordeaux, France	70.6	23.0	48.9	78.1	68.5	128.9
+142	Manchester, United Kingdom	70.5	39.7	56.5	69.1	76.3	117.2
+143	Nashville, TN, United States	70.5	48.4	60.5	76.5	69.0	141.0
+144	Columbus, OH, United States	70.4	34.3	54.0	79.0	70.9	141.2
+145	Bologna, Italy	70.3	27.0	50.6	73.4	75.0	87.4
+146	Brisbane, Australia	70.2	40.6	56.7	83.1	70.4	145.6
+147	Hanover, Germany	70.2	22.6	48.5	67.3	68.4	130.2
+148	Las Vegas, NV, United States	70.2	36.7	54.9	69.7	84.8	133.5
+149	Tampa, FL, United States	70.1	50.5	61.2	74.2	75.9	140.6
+150	Mannheim, Germany	70.1	22.4	48.4	70.4	63.2	184.2
+151	Seoul, South Korea	69.9	21.8	48.0	83.7	45.4	131.6
+152	Glasgow, United Kingdom	69.8	34.5	53.7	66.8	73.9	126.7
+153	Victoria, Canada	69.8	39.2	55.8	83.7	69.7	104.3
+154	Madison, WI, United States	69.7	41.3	56.8	78.3	69.1	147.0
+155	Indianapolis, IN, United States	69.7	36.1	54.4	73.2	74.4	148.3
+156	Gothenburg, Sweden	69.6	25.9	49.7	71.1	73.4	160.0
+157	Pittsburgh, PA, United States	69.1	34.3	53.3	77.4	66.4	152.4
+158	Belfast, United Kingdom	69.1	26.7	49.8	72.3	75.6	113.9
+159	Leipzig, Germany	69.0	21.2	47.3	69.1	63.7	127.9
+160	Toronto, Canada	69.0	39.2	55.4	73.1	70.7	127.8
+161	Newcastle upon Tyne, United Kingdom	69.0	27.6	50.2	65.0	79.0	152.5
+162	Vancouver, Canada	68.9	47.7	59.2	78.5	69.6	117.9
+163	Leeds, United Kingdom	68.8	30.3	51.3	66.1	74.4	120.2
+164	Bournemouth, United Kingdom	68.8	35.7	53.7	60.3	75.9	117.7
+165	Milton Keynes, United Kingdom	68.6	35.1	53.4	62.4	72.7	123.1
+166	Liverpool, United Kingdom	68.4	27.3	49.7	64.2	76.1	128.7
+167	Treviso, Italy	68.4	23.1	47.8	66.0	78.7	78.9
+168	Lund, Sweden	68.4	24.5	48.4	71.9	73.2	133.6
+169	Aachen, Germany	68.2	19.7	46.1	67.0	62.3	149.4
+170	Cardiff, United Kingdom	68.2	31.6	51.5	66.7	73.5	121.4
+171	Grenoble, France	67.9	19.4	45.8	74.0	63.5	127.4
+172	Vancouver, WA, United States	67.9	37.2	53.9	66.5	79.1	158.2
+173	Erlangen, Germany	67.9	22.5	47.2	71.3	62.7	193.6
+174	Milwaukee, WI, United States	67.7	36.1	53.3	75.2	69.0	137.7
+175	Raleigh, NC, United States	67.7	40.4	55.3	76.2	71.8	153.4
+176	Montpellier, France	67.7	21.7	46.8	78.2	64.7	119.2
+177	Kansas City, MO, United States	67.6	31.7	51.3	72.1	82.1	152.5
+178	Lille, France	67.5	21.9	46.8	76.5	68.8	136.3
+179	Boise, ID, United States	67.4	33.7	52.1	74.7	67.3	157.7
+180	Austin, TX, United States	67.4	47.4	58.3	71.0	74.4	162.3
+181	Birmingham, AL, United States	67.3	35.5	52.8	75.7	64.4	114.0
+182	Auckland, New Zealand	67.2	32.7	51.5	74.7	62.9	126.9
+183	Chemnitz, Germany	67.2	13.2	42.6	68.5	68.9	136.5
+184	Wichita, KS, United States	67.2	24.4	47.7	75.1	66.3	142.5
+185	Salt Lake City, UT, United States	66.9	38.5	54.0	71.0	69.8	149.3
+186	Tallinn, Estonia	66.9	19.8	45.5	62.2	73.6	96.4
+187	Verona, Italy	66.9	23.3	47.0	72.8	66.7	80.6
+188	Bolzano-Bozen, Italy	66.8	24.4	47.5	62.4	70.6	101.8
+189	Villach, Austria	66.8	19.7	45.4	64.2	67.5	124.1
+190	Braunschweig, Germany	66.7	18.3	44.7	69.9	66.4	191.5
+191	Nottingham, United Kingdom	66.6	25.4	47.8	64.6	67.1	141.0
+192	Omaha, NE, United States	66.6	36.2	52.8	69.9	71.6	143.5
+193	Sliema, Malta	66.6	39.6	54.3	64.8	76.0	70.2
+194	Lethbridge, AB, Canada	66.5	21.7	46.1	70.7	68.6	129.6
+195	Wellington, New Zealand	66.4	31.6	50.6	75.4	61.1	122.1
+196	Ann Arbor, MI, United States	66.4	46.4	57.3	69.2	75.0	164.8
+197	Tulsa, OK, United States	66.3	24.9	47.5	73.7	64.0	138.9
+198	Coventry, United Kingdom	66.3	30.2	49.8	68.8	69.5	129.2
+199	Trento, Italy	66.2	23.6	46.8	61.9	78.0	85.8
+200	Padova, Italy	66.2	23.2	46.6	66.3	69.5	86.0
+201	Cleveland, OH, United States	66.0	37.1	52.8	77.7	61.0	122.7
+202	Jacksonville, FL, United States	65.9	33.7	51.3	70.5	76.3	144.3
+203	Rochester, NY, United States	65.9	32.9	50.8	72.5	75.0	144.9
+204	Kitchener, Canada	65.8	30.8	49.9	74.2	69.5	120.8
+205	Leuven, Belgium	65.4	28.2	48.4	62.7	75.4	142.9
+206	Knoxville, TN, United States	65.3	38.1	52.9	68.1	69.8	127.1
+207	Limassol, Cyprus	65.3	37.8	52.8	58.1	73.3	103.7
+208	Houston, TX, United States	65.2	41.3	54.3	68.2	72.3	164.2
+209	Calgary, Canada	65.2	30.5	49.4	73.3	63.7	125.7
+210	Guelph, Canada	65.1	34.2	51.1	71.5	67.9	120.1
+211	St. John's, Newfoundland and Labrador, Canada	65.0	22.4	45.6	74.1	64.3	122.6
+212	San Antonio, TX, United States	64.8	35.9	51.7	70.2	64.7	153.6
+213	Cagliari, Italy	64.8	20.6	44.7	68.3	72.7	82.0
+214	Tucson, AZ, United States	64.6	30.4	49.0	70.4	70.8	148.1
+215	Edmonton, Canada	64.4	27.1	47.4	72.9	66.0	127.7
+216	Sheffield, United Kingdom	64.4	25.0	46.5	58.2	73.2	140.3
+217	Kelowna, Canada	64.3	33.2	50.2	74.7	62.3	118.4
+218	Halifax, Canada	64.2	34.0	50.5	76.8	62.8	108.0
+219	Genoa, Italy	63.9	19.8	43.8	69.3	66.7	93.3
+220	Albuquerque, NM, United States	63.7	30.8	48.8	73.4	69.2	154.9
+221	Ottawa, Canada	63.6	33.2	49.8	70.7	64.2	159.2
+222	Mississauga, Canada	63.6	38.5	52.2	67.1	61.8	112.6
+223	Rome, Italy	63.5	34.2	50.2	64.9	64.0	85.7
+224	Regina, Canada	63.5	24.5	45.7	72.4	69.4	115.6
+225	Saskatoon, Canada	63.5	24.9	45.9	74.0	61.4	114.4
+226	Trieste, Italy	63.3	19.8	43.5	64.9	63.8	83.9
+227	London, Canada	63.2	30.0	48.1	68.6	68.7	126.1
+228	Cincinnati, OH, United States	63.2	37.0	51.3	68.7	59.9	149.1
+229	Louisville, KY, United States	63.0	30.4	48.2	75.2	61.4	158.8
+230	Christchurch, New Zealand	62.7	27.6	46.7	70.6	64.3	115.0
+231	Columbia, SC, United States	62.6	28.7	47.2	69.4	64.1	135.4
+232	Turin, Italy	62.4	19.8	43.0	64.5	66.3	95.2
+233	Dubai, United Arab Emirates	62.0	53.6	58.1	47.8	67.1	134.7
+234	Barcelona, Spain	61.6	35.6	49.7	60.7	65.2	98.5
+235	Rimini, Italy	61.3	16.8	41.0	57.8	76.0	90.9
+236	Valletta, Malta	61.1	34.6	49.1	58.9	68.7	89.8
+237	Palma de Mallorca, Spain	61.1	31.7	47.7	54.4	67.7	87.3
+238	Winnipeg, Canada	61.1	24.4	44.4	69.7	59.3	112.9
+239	Naples, Italy	61.0	25.1	44.7	63.1	62.2	79.7
+240	Prague, Czech Republic	60.9	31.1	47.4	55.1	51.1	99.8
+241	Remagen, Germany	60.8	15.5	40.1	58.7	49.8	93.3
+242	Bergamo, Italy	60.7	19.0	41.7	60.9	66.2	116.5
+243	Reggio Nell'emilia, Italy	60.6	16.6	40.6	62.5	64.9	101.0
+244	Quebec City, Canada	60.5	21.7	42.9	70.3	59.9	132.8
+245	Montreal, Canada	60.5	28.6	46.0	66.4	65.6	128.1
+246	Madrid, Spain	60.5	35.4	49.0	59.4	62.2	109.4
+247	Hamilton, Canada	60.4	31.6	47.3	65.8	66.2	118.2
+248	Split, Croatia	60.0	25.6	44.3	55.5	67.0	74.7
+249	Huntsville, AL, United States	59.9	30.0	46.3	61.1	67.0	168.9
+250	Montevideo, Uruguay	59.9	15.0	39.5	60.1	64.4	58.1
+251	Nicosia, Cyprus	59.7	21.3	42.2	57.4	60.5	83.3
+252	Ljubljana, Slovenia	58.7	27.0	44.2	54.8	59.3	85.8
+253	Athens, Greece	58.6	18.4	40.3	57.2	63.7	67.1
+254	Tartu, Estonia	58.4	15.3	38.8	52.4	68.0	102.4
+255	Bari, Italy	58.2	20.9	41.3	58.9	58.7	93.1
+256	Heraklion, Greece	58.1	16.4	39.1	56.6	56.8	61.7
+257	Kingston, Canada	57.6	31.1	45.5	63.8	62.8	131.4
+258	Paphos, Cyprus	57.6	29.9	45.0	54.4	59.5	99.2
+259	Palermo, Italy	57.2	15.4	38.2	61.1	56.4	80.8
+260	Bratislava, Slovakia	56.9	23.0	41.4	55.0	55.0	83.3
+261	Bilbao, Spain	56.8	29.6	44.4	52.3	65.2	104.1
+262	Tokyo, Japan	56.5	25.3	42.3	66.1	36.0	122.9
+263	Larnaca, Cyprus	56.5	23.8	41.6	53.2	56.9	88.8
+264	Riga, Latvia	55.9	14.2	36.9	50.2	59.3	86.9
+265	Thessaloniki, Greece	55.6	14.6	36.9	54.2	63.1	62.5
